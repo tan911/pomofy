@@ -1,0 +1,18 @@
+{
+    "name": "@pomofy/lucia-auth",
+    "private": true,
+    "main": "./auth.ts",
+    "exports": {
+        ".": "./auth.ts"
+    },
+    "dependencies": {
+        "@lucia-auth/adapter-prisma": "^4.0.1",
+        "@pomofy/prisma": "workspace:*",
+        "lucia": "^3.1.1",
+        "oslo": "^1.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.24",
+        "typescript": "^5.3.3"
+    }
+}

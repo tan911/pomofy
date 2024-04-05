@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        // "module": "NodeNext",
+        // "moduleResolution": "NodeNext",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "preserveWatchOutput": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "noEmit": true
+    },
+    "include": ["auth.ts"],
+    "exclude": ["node_module", "dist"]
+}
