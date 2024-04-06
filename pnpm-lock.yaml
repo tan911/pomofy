@@ -111,6 +111,12 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.51.2)
+      '@node-rs/argon2':
+        specifier: ^1.8.0
+        version: 1.8.0
+      '@node-rs/bcrypt':
+        specifier: ^1.10.1
+        version: 1.10.1
       '@pomofy/lucia-auth':
         specifier: workspace:*
         version: link:../../packages/lucia-auth
@@ -211,12 +217,6 @@ importers:
       '@lucia-auth/adapter-prisma':
         specifier: ^4.0.1
         version: 4.0.1(@prisma/client@5.11.0)(lucia@3.1.1)
-      '@node-rs/argon2':
-        specifier: ^1.8.0
-        version: 1.8.0
-      '@node-rs/bcrypt':
-        specifier: ^1.10.1
-        version: 1.10.1
       '@pomofy/prisma':
         specifier: workspace:*
         version: link:../prisma
