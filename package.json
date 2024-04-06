@@ -8,14 +8,26 @@
         "dev:server": "dotenv -- turbo run dev --filter=server",
         "dev:web": "dotenv -- turbo run dev --filter=web",
         "lint": "turbo lint",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "pre-commit": "lint-staged"
     },
     "devDependencies": {
         "@repo/eslint-config": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "dotenv-cli": "^7.4.1",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
         "turbo": "latest"
+    },
+    "lint-staged": {
+        "(apps|packages)/**/*.{js,ts,jsx,tsx}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.json": [
+            "prettier --write"
+        ]
     },
     "packageManager": "pnpm@8.9.0",
     "engines": {

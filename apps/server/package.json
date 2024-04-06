@@ -6,7 +6,7 @@
         "dev": "nodemon src/server.ts",
         "build": "rm -rf dist && pnpm exec tsc",
         "start": "node dist/server.js",
-        "lint:fix": "eslint --fix"
+        "lint": "eslint . --config .eslintrc.json"
     },
     "dependencies": {
         "@pomofy/lucia-auth": "workspace:*",

@@ -1,0 +1,37 @@
+name: Test and deploy to vercel
+on:
+    push:
+        branches:
+            - 'main'
+    pull_request:
+        types:
+            - opened
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download
+              uses: actions/checkout@v4
+            - name: setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+            - name: Install dependencies
+              run: npm ci
+            - name: Run test
+              run: npm run test
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download
+              uses: actions/checkout@v4
+            - name: setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+            - name: Install dependencies
+              run: npm ci
+            - name: Deploy
+              # TEST FOR NOW
+              run: echo "Deploying..."
