@@ -12,12 +12,12 @@ jobs:
         steps:
             - name: Download
               uses: actions/checkout@v4
-            - name: setup node
-              uses: actions/setup-node@v4
+            - name: pnpm setup
+              uses: pnpm/action-setup@v3
               with:
                   node-version: 18
             - name: Install dependencies
-              run: pnpm ci
+              run: pnpm install
             - name: Run test
               run: pnpm run test
     deploy:
