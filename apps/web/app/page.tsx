@@ -5,7 +5,9 @@ export default function Page(): JSX.Element {
         <main className="mx-auto flex h-screen flex-col items-center justify-center gap-3 px-5 sm:container">
             <div className="max-w-[900px] text-center">
                 <h1 className="text-2xl md:text-lg lg:text-5xl">
-                    <span className="block">My portfolio management tool</span>
+                    <span className="block">
+                        Pomofy -- an application for your task with pomodoro
+                    </span>
                     <span className="block text-blue-600">
                         Built for Efficiency and Scalability
                     </span>

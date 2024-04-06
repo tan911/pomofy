@@ -9,6 +9,7 @@
         "dev:web": "dotenv -- turbo run dev --filter=web",
         "lint": "turbo lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "test": "turbo run test",
         "pre-commit": "lint-staged",
         "prepare": "husky"
     },
@@ -19,7 +20,9 @@
         "husky": "^9.0.11",
         "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
-        "turbo": "latest"
+        "turbo": "latest",
+        "vite-tsconfig-paths": "^4.3.2",
+        "vitest": "^1.4.0"
     },
     "lint-staged": {
         "(apps|packages)/**/*.{js,ts,jsx,tsx}": [
