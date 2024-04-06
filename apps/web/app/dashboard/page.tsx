@@ -26,7 +26,7 @@ export default async function Page() {
 
     return (
         <div className="grid grid-cols-3 grid-rows-1 grid-flow-col">
-            <div className="col-span-2 bg-slate-50 p-5 mt-[75px]">
+            <div className="col-span-2 p-5 mt-[75px]">
                 <h1 className="text-xl">{format(new Date(), 'PPPP')}</h1>
                 <div className="w-full flex items-center justify-center gap-5 mb-10">
                     <Pomodoro />
@@ -73,7 +73,7 @@ export default async function Page() {
                     </Card>
                 </div>
             </div>
-            <div className="fixed right-0 w-1/3 bg-slate-100 h-screen flex items-center justify-center">
+            <div className="fixed right-0 w-1/3 h-screen flex items-center justify-center border-l border-slate-300 z-2">
                 <CreateTaskForm />
             </div>
         </div>

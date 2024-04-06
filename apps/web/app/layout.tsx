@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 
 import '@pomofy/ui/global.css'
 import { Toaster } from '@pomofy/ui'
+import { ThemeProvider } from '@/provider/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,10 +14,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${inter.className} min-h-screen`}>
-                {children}
-                <Toaster />
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                    <Toaster />
+                </ThemeProvider>
             </body>
         </html>
     )
