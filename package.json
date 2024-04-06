@@ -9,7 +9,8 @@
         "dev:web": "dotenv -- turbo run dev --filter=web",
         "lint": "turbo lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "pre-commit": "lint-staged"
+        "pre-commit": "lint-staged",
+        "prepare": "husky"
     },
     "devDependencies": {
         "@repo/eslint-config": "workspace:*",
