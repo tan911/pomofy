@@ -154,6 +154,9 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^14.1.1
         version: 14.1.1
+      '@prisma/nextjs-monorepo-workaround-plugin':
+        specifier: ^5.12.1
+        version: 5.12.1
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
@@ -2185,6 +2188,10 @@ packages:
     resolution: {integrity: sha512-rxtHpMLxNTHxqWuGOLzR2QOyQi79rK1u1XYAVLZxDGTLz/A+uoDnjz9veBFlicrpWjwuieM4N6jcnjj/DDoidw==}
     dependencies:
       '@prisma/debug': 5.11.0
+
+  /@prisma/nextjs-monorepo-workaround-plugin@5.12.1:
+    resolution: {integrity: sha512-ISYeAIY2x8riGhpgDqlupqqkqgJe2ksQm4yVH01afQ/7hp7fjPLcEXbDjEYuuloXJgnbvkcN6GXcD3v5hiq85A==}
+    dev: true
 
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
