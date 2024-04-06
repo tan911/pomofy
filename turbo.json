@@ -15,7 +15,8 @@
             "persistent": true
         },
         "web#build": {
-            "dependsOn": ["^build", "^db:generate"]
+            "dependsOn": ["^build", "^db:generate"],
+            "outputs": [".next/**", "!.next/cache/**"]
         },
         "test": {},
         "db:generate": {
