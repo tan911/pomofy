@@ -10,7 +10,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
 
     return (
         <main className="relative flex items-center w-full h-screen">
-            <div className="bg-primary h-full w-[300px]"></div>
+            <div className="hidden md:flex bg-primary h-full w-[300px]"></div>
             <div className="mx-auto">{children}</div>
         </main>
     )

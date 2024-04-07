@@ -1,7 +1,8 @@
 'use client'
 
-import { z } from 'zod'
 import Link from 'next/link'
+import { z } from 'zod'
+
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -56,7 +57,7 @@ export default function Page() {
         }
     }
     return (
-        <Card className="w-80 space-y-2">
+        <Card className="w-96 space-y-2">
             <CardHeader>Pomofy Login</CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -71,6 +72,7 @@ export default function Page() {
                                         <Input
                                             placeholder="you@example.com"
                                             type="email"
+                                            disabled={form.formState.isSubmitting}
                                             {...field}
                                         />
                                     </FormControl>
@@ -85,18 +87,29 @@ export default function Page() {
                                 <FormItem>
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="password" type="password" {...field} />
+                                        <Input
+                                            placeholder="password"
+                                            type="password"
+                                            disabled={form.formState.isSubmitting}
+                                            {...field}
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <Button variant={'default'} className="w-full relative">
-                            <Icon
-                                name="Loader"
-                                size={18}
-                                className="absolute animate-spin left-24"
-                            />
+                        <Button
+                            variant={'default'}
+                            className="w-full relative"
+                            disabled={form.formState.isSubmitting}
+                        >
+                            {form.formState.isSubmitting && (
+                                <Icon
+                                    name="Loader"
+                                    size={18}
+                                    className="absolute animate-spin left-24"
+                                />
+                            )}
                             Login
                         </Button>
                     </form>

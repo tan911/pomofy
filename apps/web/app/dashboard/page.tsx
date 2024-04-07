@@ -26,8 +26,8 @@ export default async function Page() {
 
     return (
         <div className="grid grid-cols-3 grid-rows-1 grid-flow-col">
-            <div className="col-span-2 p-5 mt-[75px]">
-                <h1 className="text-xl">{format(new Date(), 'PPPP')}</h1>
+            <div className="col-span-3 md:col-span-2 p-5 mt-[75px]">
+                <h1 className="text-xl mb-5">{format(new Date(), 'PPPP')}</h1>
                 <div className="w-full flex items-center justify-center gap-5 mb-10">
                     <Pomodoro />
                     <ShortBreak />
@@ -50,18 +50,18 @@ export default async function Page() {
                 <div>
                     <Card className="mb-5">
                         <CardHeader>
-                            <CardTitle className="flex items-center justify-between">
+                            <CardTitle className="flex items-center justify-between mb-2">
                                 <span>Task 1</span>
                                 <Badge variant="outline">{format(new Date(), 'PPP')}</Badge>
                             </CardTitle>
-                            <CardDescription>
+                            <CardDescription className="text-center md:text-left">
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
                                 consequatur dolores beatae adipisci sequi ullam, nam itaque enim
                                 recusandae, quidem quod sit fuga, deserunt minima omnis quasi nobis
                                 quo dolorum.
                             </CardDescription>
                         </CardHeader>
-                        <CardFooter className="flex items-center justify-between">
+                        <CardFooter className="flex flex-col gap-5 md:flex-row items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <Switch id="card-status" />
                                 <label htmlFor="card-status">Inprogress</label>
@@ -73,7 +73,7 @@ export default async function Page() {
                     </Card>
                 </div>
             </div>
-            <div className="fixed right-0 w-1/3 h-screen flex items-center justify-center border-l border-slate-300 z-2">
+            <div className="hidden fixed right-0 w-1/3 h-screen md:flex items-center justify-center border-l border-slate-300 z-2">
                 <CreateTaskForm />
             </div>
         </div>
