@@ -1,8 +1,5 @@
 {
     "extends": "@repo/typescript-config/nextjs.json",
-    "compilerOptions": {
-        "outDir": "dist"
-    },
     "include": ["components", "lib", "next.config.js", "tailwind.config.js", "postcss.config.js"],
     "exclude": ["node_modules", "dist"]
 }

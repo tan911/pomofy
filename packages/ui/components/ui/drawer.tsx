@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { Drawer as DrawerPrimitive } from 'vaul'
+import type {} from '@radix-ui/react-dialog' // this will fix the error when build
 
 import { cn } from '../../lib/utils'
 
