@@ -21,7 +21,6 @@ export const SignUpSchema = z.object({
     }),
     email: z
         .string()
-        .email()
         .min(1, {
             message: 'Email is a required field',
         })
@@ -30,8 +29,11 @@ export const SignUpSchema = z.object({
 })
 
 export const LoginSchema = z.object({
-    email: z.string().email().min(1, {
-        message: 'Email is required field',
-    }),
+    email: z
+        .string()
+        .min(1, {
+            message: 'Email is required field',
+        })
+        .email(),
     password: z.string().min(1, { message: 'Password is a required field' }),
 })

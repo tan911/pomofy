@@ -57,7 +57,7 @@ export default function Page() {
         }
     }
     return (
-        <Card className="w-96 space-y-2">
+        <Card className="md:w-96 space-y-2">
             <CardHeader>Pomofy Login</CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -67,16 +67,29 @@ export default function Page() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel className="text-slate-300">Email</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder="you@example.com"
-                                            type="email"
-                                            disabled={form.formState.isSubmitting}
-                                            {...field}
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                placeholder="you@example.com"
+                                                type="email"
+                                                disabled={form.formState.isSubmitting}
+                                                className={cn(
+                                                    form.formState.errors.email?.message &&
+                                                        'border border-red-500 bg-red-950 bg-opacity-50 focus-visible:ring-transparent'
+                                                )}
+                                                {...field}
+                                            />
+                                            {form.formState.errors.email?.message && (
+                                                <Icon
+                                                    name="CircleAlert"
+                                                    size={18}
+                                                    className="absolute right-0 top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] text-red-500"
+                                                />
+                                            )}
+                                        </div>
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-red-500" />
                                 </FormItem>
                             )}
                         />
@@ -85,16 +98,29 @@ export default function Page() {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel className="text-slate-300">Password</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder="password"
-                                            type="password"
-                                            disabled={form.formState.isSubmitting}
-                                            {...field}
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                placeholder="password"
+                                                type="password"
+                                                disabled={form.formState.isSubmitting}
+                                                className={cn(
+                                                    form.formState.errors.password?.message &&
+                                                        'border border-red-500 bg-red-950 bg-opacity-50 focus-visible:ring-transparent'
+                                                )}
+                                                {...field}
+                                            />
+                                            {form.formState.errors.email?.message && (
+                                                <Icon
+                                                    name="CircleAlert"
+                                                    size={18}
+                                                    className="absolute right-0 top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] text-red-500"
+                                                />
+                                            )}
+                                        </div>
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-red-500" />
                                 </FormItem>
                             )}
                         />
@@ -107,7 +133,7 @@ export default function Page() {
                                 <Icon
                                     name="Loader"
                                     size={18}
-                                    className="absolute animate-spin left-24"
+                                    className="absolute animate-spin left-32"
                                 />
                             )}
                             Login

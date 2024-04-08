@@ -7,7 +7,7 @@ on:
         types:
             - opened
 jobs:
-    test:
+    Test:
         runs-on: ubuntu-latest
         steps:
             - name: Download
@@ -20,18 +20,3 @@ jobs:
               run: pnpm install
             - name: Run test
               run: pnpm run test
-    deploy:
-        needs: test
-        runs-on: ubuntu-latest
-        steps:
-            - name: Download
-              uses: actions/checkout@v4
-            - name: pnpm setup
-              uses: pnpm/action-setup@v3
-              with:
-                  version: 8
-            - name: Install dependencies
-              run: pnpm install
-            - name: Deploy
-              # TEST FOR NOW
-              run: echo "Deploying..."

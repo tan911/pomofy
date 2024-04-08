@@ -30,12 +30,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         </Button>
                     </DrawerTrigger>
                     <DrawerContent className="flex items-center md:hidden">
-                        <CreateTaskForm />
-                        <DrawerFooter className="w-2/3 p-0 my-[16px]">
-                            <DrawerClose asChild>
-                                <Button variant={'default'}>Cancel</Button>
-                            </DrawerClose>
-                        </DrawerFooter>
+                        <div className="px-4 w-full">
+                            <CreateTaskForm className="w-full" />
+                            <DrawerFooter className="w-full p-0 my-[16px]">
+                                <DrawerClose asChild>
+                                    <Button variant={'default'}>Cancel</Button>
+                                </DrawerClose>
+                            </DrawerFooter>
+                        </div>
                     </DrawerContent>
                 </Drawer>
             </div>

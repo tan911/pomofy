@@ -29,7 +29,7 @@ import {
     SelectValue,
 } from '@pomofy/ui'
 
-export default function CreateTaskForm() {
+export default function CreateTaskForm({ className = 'w-2/3' }: { className?: string }) {
     const form = useForm<z.infer<typeof createPomoSchema>>({
         resolver: zodResolver(createPomoSchema),
         defaultValues: {
@@ -44,7 +44,10 @@ export default function CreateTaskForm() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleFormSubmit)} className="w-2/3 space-y-4">
+            <form
+                onSubmit={form.handleSubmit(handleFormSubmit)}
+                className={cn('space-y-4', className)}
+            >
                 <FormField
                     control={form.control}
                     name="task"

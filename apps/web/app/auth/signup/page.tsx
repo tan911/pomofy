@@ -20,6 +20,7 @@ import {
     CardHeader,
     CardFooter,
 } from '@pomofy/ui'
+import { cn } from '@pomofy/ui/utils'
 import { Icon } from '@pomofy/ui/icons'
 import { SignUpSchema } from '../_actions/schema'
 import { signup } from '../_actions/signup'
@@ -39,7 +40,7 @@ export default function Page() {
         await signup(data)
     }
     return (
-        <Card className="w-96 space-y-2">
+        <Card className="md:w-96 space-y-2">
             <CardHeader>Pomofy Sign Up</CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -49,11 +50,29 @@ export default function Page() {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name</FormLabel>
+                                    <FormLabel className="text-slate-300">Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="name" type="text" {...field} />
+                                        <div className="relative">
+                                            <Input
+                                                placeholder="name"
+                                                type="text"
+                                                disabled={form.formState.isSubmitting}
+                                                className={cn(
+                                                    form.formState.errors.name?.message &&
+                                                        'border border-red-500 bg-red-950 bg-opacity-50 focus-visible:ring-transparent'
+                                                )}
+                                                {...field}
+                                            />
+                                            {form.formState.errors.name?.message && (
+                                                <Icon
+                                                    name="CircleAlert"
+                                                    size={18}
+                                                    className="absolute right-0 top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] text-red-500"
+                                                />
+                                            )}
+                                        </div>
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-red-500" />
                                 </FormItem>
                             )}
                         />
@@ -62,15 +81,29 @@ export default function Page() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel className="text-slate-300">Email</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder="you@example.com"
-                                            type="email"
-                                            {...field}
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                disabled={form.formState.isSubmitting}
+                                                placeholder="you@example.com"
+                                                type="email"
+                                                className={cn(
+                                                    form.formState.errors.email?.message &&
+                                                        'border border-red-500 bg-red-950 bg-opacity-50 focus-visible:ring-transparent'
+                                                )}
+                                                {...field}
+                                            />
+                                            {form.formState.errors.email?.message && (
+                                                <Icon
+                                                    name="CircleAlert"
+                                                    size={18}
+                                                    className="absolute right-0 top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] text-red-500"
+                                                />
+                                            )}
+                                        </div>
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-red-500" />
                                 </FormItem>
                             )}
                         />
@@ -79,17 +112,30 @@ export default function Page() {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel className="text-slate-300">Password</FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
+                                                disabled={form.formState.isSubmitting}
                                                 placeholder="password"
                                                 type={isPasswordVisible ? 'text' : 'password'}
+                                                className={cn(
+                                                    form.formState.errors.password?.message &&
+                                                        'border border-red-500 bg-red-950 bg-opacity-50 focus-visible:ring-transparent'
+                                                )}
                                                 {...field}
                                             />
+                                            {form.formState.errors.password?.message && (
+                                                <Icon
+                                                    name="CircleAlert"
+                                                    size={18}
+                                                    className="absolute right-12 top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] text-red-500"
+                                                />
+                                            )}
+
                                             <Button
                                                 variant={'outline'}
-                                                className="absolute right-0 top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%]"
+                                                className="absolute right-[-18px] top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] opacity-50"
                                                 onClick={() =>
                                                     setIsPasswordVisible(!isPasswordVisible)
                                                 }
@@ -101,11 +147,15 @@ export default function Page() {
                                             </Button>
                                         </div>
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-red-500" />
                                 </FormItem>
                             )}
                         />
-                        <Button variant={'default'} className="w-full">
+                        <Button
+                            variant={'default'}
+                            className="w-full"
+                            disabled={form.formState.isSubmitting}
+                        >
                             Sign Up
                         </Button>
                     </form>
