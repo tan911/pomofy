@@ -18,13 +18,13 @@ export default function Page(): JSX.Element {
             <div className="flex flex-row gap-2">
                 <Link
                     href="/auth/signup"
-                    className="shadown-md rounded-md bg-blue-600 px-4 py-2 text-mobsm text-white hover:bg-blue-700 md:text-mobmd"
+                    className="shadown-md rounded-md bg-blue-600 px-4 py-2 text-sm md:text-md text-white hover:bg-blue-700 md:text-mobmd"
                 >
                     Sign Up
                 </Link>
                 <Link
                     href="/auth/login"
-                    className="shadown-md rounded-md bg-slate-800 px-4 py-2 text-sm text-white text-center hover:bg-slate-900 md:text-md"
+                    className="shadown-md rounded-md bg-slate-800 px-4 py-2 text-sm md:text-md text-white text-center hover:bg-slate-900 md:text-md"
                 >
                     Log In
                 </Link>
