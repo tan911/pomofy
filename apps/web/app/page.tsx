@@ -5,17 +5,14 @@ export default function Page(): JSX.Element {
         <main className="mx-auto flex h-screen flex-col items-center justify-center gap-3 px-5 sm:container">
             <div className="max-w-[900px] text-center">
                 <h1 className="text-2xl md:text-lg lg:text-5xl">
-                    <span className="block">
-                        Pomofy -- an application for your task with pomodoro
-                    </span>
+                    <span className="block text-7xl font-bold mb-2">Pomofy</span>
                     <span className="block text-blue-600">
-                        Built for Efficiency and Scalability
+                        Efficiency and Scalability at Your Fingertips
                     </span>
                 </h1>
-                <p className="my-3">
-                    This app showcases my ability to design and develop efficient, scalable
-                    applications. It leverages powerful features like: Postgres Database,
-                    Authentication, Instant APIs, Responsive design, Adaptable Growth.
+                <p className="my-5">
+                    Spruce up your task management with Pomofy, an app featuring a Pomodoro timer!
+                    Stay focused and boost productivity with this simple and appealing tool.
                 </p>
             </div>
             <div className="flex flex-row gap-2">

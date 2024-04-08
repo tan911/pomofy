@@ -141,11 +141,16 @@ export default function Page() {
                     </form>
                 </Form>
             </CardContent>
-            <CardFooter className="flex items-center justify-center gap-2 text-sm">
-                <p>Don't have an account?</p>
-                <Link href="/auth/signup" className="hover:text-blue-700 hover:font-bold">
-                    {' '}
-                    Sign Up
+            <CardFooter className="flex items-center justify-center gap-2 text-xs">
+                <p className="opacity-80">Don't have an account?</p>
+                <Link
+                    href="/auth/signup"
+                    className={cn(
+                        'hover:text-blue-700',
+                        form.formState.isSubmitting ? 'pointer-events-none' : ''
+                    )}
+                >
+                    <span className="underline underline-offset-3">Sign Up Now</span>
                 </Link>
             </CardFooter>
         </Card>
