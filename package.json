@@ -4,6 +4,7 @@
     "scripts": {
         "build": "dotenv -- turbo build",
         "build:server": "dotenv -- turbo run build --filter=server",
+        "build:web": "dotenv -- turbo run build --filter=web",
         "dev:all": "dotenv -- turbo run dev --filter=./apps/*",
         "dev:server": "dotenv -- turbo run dev --filter=server",
         "dev:web": "dotenv -- turbo run dev --filter=web",

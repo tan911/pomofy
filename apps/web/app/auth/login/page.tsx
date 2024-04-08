@@ -126,17 +126,19 @@ export default function Page() {
                         />
                         <Button
                             variant={'default'}
-                            className="w-full relative"
+                            className="w-full"
                             disabled={form.formState.isSubmitting}
                         >
-                            {form.formState.isSubmitting && (
-                                <Icon
-                                    name="Loader"
-                                    size={18}
-                                    className="absolute animate-spin left-32"
-                                />
-                            )}
-                            Login
+                            <span className="relative">
+                                {form.formState.isSubmitting && (
+                                    <Icon
+                                        name="Loader"
+                                        size={18}
+                                        className="absolute animate-spin left-[-22px]"
+                                    />
+                                )}
+                                Login
+                            </span>
                         </Button>
                     </form>
                 </Form>
