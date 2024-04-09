@@ -1,18 +1,16 @@
 {
+    "extends": "@repo/typescript-config/node.json",
     "compilerOptions": {
-        "target": "ESNext",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "isolatedModules": true,
-        // "module": "NodeNext",
-        // "moduleResolution": "NodeNext",
         "module": "ESNext",
         "moduleResolution": "Bundler",
         "preserveWatchOutput": true,
-        "strict": true,
         "skipLibCheck": true,
-        "noEmit": true
+        "noEmit": true,
+        "strict": true
     },
-    "include": ["auth.ts"],
+    "include": ["**/*.ts"],
     "exclude": ["node_module", "dist"]
 }

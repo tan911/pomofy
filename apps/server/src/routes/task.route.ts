@@ -1,12 +1,10 @@
 import { Router } from 'express'
-// import { ErrorServices } from '../services/error'
 
-const route = Router()
+const route: Router = Router()
 
 route.get('/', (req, res) => {
     if (!req.query.id) {
-        // throw new ErrorServices({ message: 'Access denied database', statusCode: 500 })
-        throw Error('Failed saasdasdad')
+        throw Error('Failed')
     }
     res.status(200).json({
         message: 'todo route',

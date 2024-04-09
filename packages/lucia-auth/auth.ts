@@ -1,11 +1,11 @@
-import { Lucia, generateId } from 'lucia'
+import { Lucia, generateId, verifyRequestOrigin } from 'lucia'
 import { Argon2id } from 'oslo/password'
 import { PrismaAdapter } from '@lucia-auth/adapter-prisma'
 import { prisma } from '@pomofy/prisma'
 import type { Session, User } from 'lucia'
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user)
-export { Argon2id, generateId, Session, User }
+export { Argon2id, generateId, Session, User, verifyRequestOrigin }
 
 export const lucia = new Lucia(adapter, {
     sessionCookie: {

@@ -3,7 +3,7 @@ import { z } from 'zod'
 const StatusEnum = z.enum(['Todo', 'Inprogress'])
 const PriorityEnum = z.enum(['High', 'Normal', 'Low'])
 export const createPomoSchema = z.object({
-    task: z
+    title: z
         .string()
         .min(5, {
             message: 'Task must be at least 5 characters',

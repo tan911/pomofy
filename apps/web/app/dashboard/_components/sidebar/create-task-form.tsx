@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 
+import { createTask } from '../../_actions/create-task'
 import { createPomoSchema } from '../../_actions/schema'
 import { CalendarIcon } from '@pomofy/ui/icons'
 import { cn } from '@pomofy/ui/utils'
@@ -33,13 +34,13 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
     const form = useForm<z.infer<typeof createPomoSchema>>({
         resolver: zodResolver(createPomoSchema),
         defaultValues: {
-            task: '',
+            title: '',
             description: '',
         },
     })
 
-    const handleFormSubmit: SubmitHandler<z.infer<typeof createPomoSchema>> = (data) => {
-        console.log(data)
+    const handleFormSubmit: SubmitHandler<z.infer<typeof createPomoSchema>> = async (data) => {
+        await createTask(data)
     }
 
     return (
@@ -50,12 +51,12 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
             >
                 <FormField
                     control={form.control}
-                    name="task"
+                    name="title"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel className="sr-only">Task</FormLabel>
                             <FormControl>
-                                <Input placeholder="Task" type="text" {...field} />
+                                <Input placeholder="Title" type="text" {...field} />
                             </FormControl>
                             <FormMessage className="text-sm text-red-500" />
                         </FormItem>
