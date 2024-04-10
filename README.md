@@ -1,4 +1,4 @@
-# POMOFY:POMODORO TOOL WITH TODO MANAGEMENT
+# POMOFY: Pomodoro Tool
 
 Welcome to Pomofy, an app designed to enhance your task management experience with the power of Pomodoro Technique! Stay focused and boost productivity with this simple and appealing tool.
 
