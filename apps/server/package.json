@@ -9,7 +9,8 @@
         "start": "node dist/server.js",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
         "test": "vitest run",
-        "lint": "tsc --noEmit && eslint . --config .eslintrc.json"
+        "lint": "tsc --noEmit && eslint . --config .eslintrc.json",
+        "postinstall": "pnpm -w run db:generate"
     },
     "dependencies": {
         "@node-rs/argon2": "^1.8.0",
