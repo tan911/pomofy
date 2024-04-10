@@ -54,6 +54,9 @@ importers:
       '@pomofy/prisma':
         specifier: workspace:*
         version: link:../../packages/prisma
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -79,9 +82,6 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       '@types/cors':
         specifier: ^2.8.17
         version: 2.8.17
