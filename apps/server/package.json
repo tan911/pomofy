@@ -5,13 +5,15 @@
     "main": "src/server.ts",
     "scripts": {
         "dev": "tsx watch --clear-screen=false src/server.ts",
-        "build": "rm -rf dist && pnpm exec tsc",
+        "build": "tsup",
         "start": "node dist/server.js",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
         "test": "vitest run",
-        "lint": "eslint . --config .eslintrc.json"
+        "lint": "tsc --noEmit && eslint . --config .eslintrc.json"
     },
     "dependencies": {
+        "@node-rs/argon2": "^1.8.0",
+        "@node-rs/bcrypt": "^1.10.1",
         "@pomofy/lucia-auth": "workspace:*",
         "@pomofy/prisma": "workspace:*",
         "cors": "^2.8.5",
@@ -35,6 +37,7 @@
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-prettier": "^5.1.3",
         "prettier": "^3.2.5",
+        "tsup": "^8.0.2",
         "tsx": "^4.7.2",
         "typescript": "^5.3.3"
     },
@@ -42,5 +45,20 @@
         "@lib": "src/lib",
         "@middlewares": "src/middlewares",
         "@routes": "src/routes"
+    },
+    "tsup": {
+        "entry": [
+            "src/server.ts"
+        ],
+        "noExternal": [
+            "@pomofy",
+            "@repo"
+        ],
+        "splitting": false,
+        "clean": true,
+        "outDir": "dist",
+        "bundle": true,
+        "minify": true,
+        "sourcemap": true
     }
 }

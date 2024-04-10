@@ -4,7 +4,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import { csrfProtection, validateAuthSession } from '@middlewares/validate-auth'
+import { csrfProtection, validateAuthSession } from './middlewares/validate-auth'
 import { errorHandler } from '@middlewares/app-error'
 import { logger } from '@lib/logger'
 import { taskRouter } from '@routes/index'
