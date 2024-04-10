@@ -3,9 +3,6 @@ import { Router } from 'express'
 const route: Router = Router()
 
 route.get('/', (req, res) => {
-    if (!req.query.id) {
-        throw Error('Failed')
-    }
     res.status(200).json({
         message: 'todo route',
     })

@@ -2,6 +2,7 @@
     "extends": "@repo/typescript-config/node.json",
     "compilerOptions": {
         "baseUrl": "./src",
+        "outDir": "./dist",
         "esModuleInterop": true,
         "paths": {
             "@lib/*": ["lib/*"],

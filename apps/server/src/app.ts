@@ -4,7 +4,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import { lucia, verifyRequestOrigin } from '@pomofy/lucia-auth'
+import { csrfProtection, validateAuthSession } from '@middlewares/validate-auth'
 import { errorHandler } from '@middlewares/app-error'
 import { logger } from '@lib/logger'
 import { taskRouter } from '@routes/index'
@@ -24,16 +24,7 @@ app.use(
     })
 )
 
-app.use('/api/v1', async (req, res, next) => {
-    const originHeader = req.headers.origin ?? null
-    const hostHeader = req.headers.host ?? null
-
-    // if (!originHeader || !hostHeader || !verifyRequestOrigin(originHeader, [hostHeader])) {
-    //     return res.status(403).end()
-    // }
-
-    return res.json({ message: 'test' })
-})
+app.use('/api/v1', csrfProtection, validateAuthSession)
 
 app.use('/api/v1/task', taskRouter)
 

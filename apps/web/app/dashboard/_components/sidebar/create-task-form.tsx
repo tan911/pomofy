@@ -40,7 +40,8 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
     })
 
     const handleFormSubmit: SubmitHandler<z.infer<typeof createPomoSchema>> = async (data) => {
-        await createTask(data)
+        const token = window.localStorage.getItem('token') ?? ''
+        await createTask(data, token)
     }
 
     return (
