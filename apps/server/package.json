@@ -51,8 +51,7 @@
             "src/server.ts"
         ],
         "noExternal": [
-            "@pomofy",
-            "@repo"
+            "@pomofy"
         ],
         "splitting": false,
         "clean": true,
