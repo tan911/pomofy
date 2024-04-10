@@ -5,8 +5,7 @@
         "db:generate": "dotenv -e ../../.env -- prisma generate",
         "db:push": "dotnenv --e ../../.env -- prisma db push",
         "db:migrate": "dotenv -e ../../.env -- prisma migrate dev",
-        "db:reset": "dotenv -e ../../.env -- prisma migrate reset",
-        "postinstall": "prisma generate"
+        "db:reset": "dotenv -e ../../.env -- prisma migrate reset"
     },
     "dependencies": {
         "@prisma/client": "^5.11.0"
