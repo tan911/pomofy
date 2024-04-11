@@ -78,6 +78,9 @@ importers:
       winston:
         specifier: ^3.13.0
         version: 3.13.0
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*

@@ -8,6 +8,7 @@ import { csrfProtection, validateAuthSession } from './middlewares/validate-auth
 import { errorHandler } from '@middlewares/app-error'
 import { logger } from '@lib/logger'
 import { taskRouter } from '@routes/index'
+import env from './env'
 
 const app = express()
 
@@ -15,7 +16,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(
-    morgan('dev', {
+    morgan(env.SERVER_LOG, {
         stream: {
             write: (message: string) => {
                 logger.http(message.trim())

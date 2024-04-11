@@ -9,8 +9,7 @@
         "start": "node dist/server.js",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
         "test": "vitest run",
-        "lint": "tsc --noEmit && eslint . --config .eslintrc.json",
-        "postinstall": "pnpm -w run db:generate"
+        "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --config .eslintrc.json --max-warnings 0"
     },
     "dependencies": {
         "@node-rs/argon2": "^1.8.0",
@@ -24,7 +23,8 @@
         "module-alias": "^2.2.3",
         "morgan": "^1.10.0",
         "tsup": "^8.0.2",
-        "winston": "^3.13.0"
+        "winston": "^3.13.0",
+        "zod": "^3.22.4"
     },
     "devDependencies": {
         "@repo/eslint-config": "workspace:*",
