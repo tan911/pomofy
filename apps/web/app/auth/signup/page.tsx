@@ -39,6 +39,7 @@ export default function Page() {
     const handleFormSubmit: SubmitHandler<z.infer<typeof SignUpSchema>> = async (data) => {
         await signup(data)
     }
+
     return (
         <Card className="md:w-96 space-y-2">
             <CardHeader>Pomofy Sign Up</CardHeader>
@@ -135,6 +136,7 @@ export default function Page() {
 
                                             <Button
                                                 variant={'outline'}
+                                                type="button"
                                                 className="absolute right-[-18px] top-[50%] bottom-[50%] h-8 translate-y-[-50%] translate-x-[-50%] opacity-50"
                                                 onClick={() =>
                                                     setIsPasswordVisible(!isPasswordVisible)

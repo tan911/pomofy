@@ -1,11 +1,13 @@
 'use client'
 
 import { z } from 'zod'
+import { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { createTask } from '../../_actions/create-task'
+import { Services } from '../../_actions/task-action'
 import { createPomoSchema } from '../../_actions/schema'
 import { CalendarIcon } from '@pomofy/ui/icons'
 import { cn } from '@pomofy/ui/utils'
@@ -29,8 +31,19 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@pomofy/ui'
+import { Icon } from '@pomofy/ui/icons'
 
 export default function CreateTaskForm({ className = 'w-2/3' }: { className?: string }) {
+    const queryClient = useQueryClient()
+
+    const mutation = useMutation({
+        mutationFn: (data: z.infer<typeof createPomoSchema>) => {
+            return Services.createData(data)
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['taskList'] })
+        },
+    })
     const form = useForm<z.infer<typeof createPomoSchema>>({
         resolver: zodResolver(createPomoSchema),
         defaultValues: {
@@ -40,9 +53,18 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
     })
 
     const handleFormSubmit: SubmitHandler<z.infer<typeof createPomoSchema>> = async (data) => {
-        const token = window.localStorage.getItem('token') ?? ''
-        await createTask(data, token)
+        mutation.mutate(data)
     }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            form.reset()
+        }, 500)
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [form.formState.isSubmitSuccessful])
 
     return (
         <Form {...form}>
@@ -57,7 +79,12 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
                         <FormItem>
                             <FormLabel className="sr-only">Task</FormLabel>
                             <FormControl>
-                                <Input placeholder="Title" type="text" {...field} />
+                                <Input
+                                    placeholder="Title"
+                                    type="text"
+                                    disabled={form.formState.isSubmitting}
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage className="text-sm text-red-500" />
                         </FormItem>
@@ -71,6 +98,7 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
                             <FormLabel className="sr-only">Description</FormLabel>
                             <FormControl>
                                 <Textarea
+                                    disabled={form.formState.isSubmitting}
                                     placeholder="Description"
                                     className="resize-none"
                                     {...field}
@@ -90,6 +118,7 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
                                 <PopoverTrigger asChild>
                                     <FormControl>
                                         <Button
+                                            disabled={form.formState.isSubmitting}
                                             variant={'outline'}
                                             className={cn(
                                                 'w-full pl-3 text-left font-normal',
@@ -110,9 +139,7 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
                                         mode="single"
                                         selected={field.value}
                                         onSelect={field.onChange}
-                                        disabled={(date) =>
-                                            date > new Date() || date < new Date('1900-01-01')
-                                        }
+                                        disabled={form.formState.isSubmitting}
                                         initialFocus
                                     />
                                 </PopoverContent>
@@ -168,8 +195,22 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
                     />
                 </div>
 
-                <Button type="submit" variant={'default'} className="w-full">
-                    Create Task
+                <Button
+                    type="submit"
+                    variant={'default'}
+                    className="w-full"
+                    disabled={form.formState.isSubmitting}
+                >
+                    <span className="relative">
+                        {mutation.isPending && (
+                            <Icon
+                                name="LoaderCircle"
+                                size={18}
+                                className="absolute animate-spin left-[-22px]"
+                            />
+                        )}
+                        Create Task
+                    </span>
                 </Button>
             </form>
         </Form>

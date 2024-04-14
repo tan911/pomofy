@@ -12,7 +12,7 @@ export default async function Page() {
 
     return (
         <div className="grid grid-cols-3 grid-rows-1 grid-flow-col">
-            <Main id={session.id} />
+            <Main tokenId={session.id} />
         </div>
     )
 }
