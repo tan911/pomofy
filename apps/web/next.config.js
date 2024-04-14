@@ -14,4 +14,7 @@ module.exports = {
         serverComponentsExternalPackages: ['oslo'],
     },
     transpilePackages: ['@pomofy/ui', '@pomofy/lucia-auth', '@pomofy/prisma', 'lucide-react'],
+    env: {
+        SERVER_URL: process.env.SERVER_URL,
+    },
 }

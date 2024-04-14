@@ -2,7 +2,7 @@ import axios from 'axios'
 
 async function apiServerCall(token: string) {
     let apiQueryIntance = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
+        baseURL: process.env.SERVER_URL,
     })
 
     apiQueryIntance.interceptors.request.use(

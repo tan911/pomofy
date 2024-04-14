@@ -12,7 +12,7 @@ import env from './env'
 
 const app = express()
 
-app.use(cors({ origin: [env.NEXT_PUBLIC_SERVER_URL, env.NEXT_PUBLIC_URL], credentials: true }))
+app.use(cors({ origin: [env.SERVER_URL, env.NEXT_PUBLIC_URL], credentials: true }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(
