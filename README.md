@@ -14,5 +14,5 @@ Welcome to Pomofy, an app designed to enhance your task management experience wi
 -   Nextjs
 -   Express
 -   Tailwindcss
--   Neon (postgreSQL) DB
--   Prisma
+-   postgreSQL ([NEON](https://neon.tech/))
+-   Prisma 
