@@ -10,4 +10,4 @@ const ERROR_CODE = {
     INTERNAL_SERVER_ERROR: 500,
 } as const
 
-type code = Values<typeof ERROR_CODE>
+export type code = Values<typeof ERROR_CODE>

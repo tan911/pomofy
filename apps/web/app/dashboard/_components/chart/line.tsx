@@ -1,80 +1,75 @@
+'use client'
+
 import {
-    Chart as ChartJS,
+    XAxis,
+    YAxis,
+    CartesianGrid,
     Tooltip,
-    Legend,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    ScriptableContext,
-    Filler,
-} from 'chart.js'
-import { Line } from 'react-chartjs-2'
+    Area,
+    ResponsiveContainer,
+    ComposedChart,
+} from 'recharts'
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Title,
-    Tooltip,
-    Legend
-)
+type TData = {
+    id: string
+    taskId: string
+    title: string
+    description: string
+    date: Date
+    status: 'Inprogess' | 'Todo' | 'Completed'
+    priority: 'Low' | 'Priority' | 'High'
+}[]
 
-type TDataLine = {
-    totalCompleted: number
-    inProgress: number
-    todo: number
-}
+export default function Chart({ data }: { data: TData }) {
+    // issue- https://github.com/recharts/recharts/issues/3615
+    const error = console.error
+    console.error = (...args: any) => {
+        if (/defaultProps/.test(args[0])) return
+        error(...args)
+    }
 
-export default function LineChart({ inProgress, todo, totalCompleted }: TDataLine) {
-    const data = () => {
-        return {
-            labels: ['Todo', 'In progess', 'completed'],
-            datasets: [
-                {
-                    data: [todo, inProgress, totalCompleted],
-                    fill: 'start',
-                    backgroundColor: (context: ScriptableContext<'line'>) => {
-                        const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200)
-                        gradient.addColorStop(0, 'rgba(4, 172, 172, 1)')
-                        gradient.addColorStop(1, 'rgba(4, 172, 172, 0)')
-                        return gradient
-                    },
-                    borderColor: '#23fff4',
-                    borderWidth: 2,
-                    pointColor: '#fff',
-                    pointStrokeColor: '#23ffff',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: '#23ffff',
-                },
-            ],
+    if (!data) {
+        return
+    }
+
+    const tasksOverTime = data.reduce((acc: any, task: any) => {
+        const dateString = task.date
+
+        if (!acc[dateString]) {
+            acc[dateString] = 1
+        } else {
+            acc[dateString]++
         }
-    }
 
-    const options = {
-        maintainAspectRatio: false,
-        responsive: true,
-        elements: {
-            line: {
-                tension: 0.35,
-            },
-        },
-        plugins: {
-            legend: {
-                display: false,
-            },
-            filler: {
-                propagate: false,
-            },
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    }
-    return <Line data={data()} options={options} />
+        return acc
+    }, {})
+
+    const tasksOverTimeArray = Object.entries(tasksOverTime).map(([date, count]) => ({
+        date,
+        count,
+    }))
+
+    return (
+        <ResponsiveContainer width="100%" height="100%">
+            <ComposedChart width={500} height={300} data={tasksOverTimeArray}>
+                <defs>
+                    <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="3%" stopColor="#19adfe" stopOpacity={0.1} />
+                        <stop offset="97%" stopColor="#1f3f52" stopOpacity={0.1} />
+                    </linearGradient>
+                </defs>
+                <CartesianGrid vertical={false} strokeDasharray="2 2" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Area
+                    type="monotone"
+                    dataKey="count"
+                    strokeWidth={3}
+                    fillOpacity={1}
+                    fill="url(#gradient)"
+                />
+            </ComposedChart>
+        </ResponsiveContainer>
+    )
 }

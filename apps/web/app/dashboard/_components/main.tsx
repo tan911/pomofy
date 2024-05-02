@@ -4,16 +4,15 @@ import { format } from 'date-fns'
 import { useQuery } from '@tanstack/react-query'
 
 import useLocalSessionId from '@/hooks/useLocalSessionId'
-import { Services } from '../_actions/task-action'
-import CreateTaskForm from './sidebar/create-task-form'
+import TaskOverview from './task/task-overview'
 import Pomodoro from './timer-display/pomodoro'
 import ShortBreak from './timer-display/short-break'
 import LongBreak from './timer-display/long-break'
-import TaskList from './task-list'
-import LineChart from './chart/line'
+import Chart from './chart/line'
+import TaskList from './task/task-list'
 
+import { Services } from '../_actions/task-action'
 import { Card, CardContent, CardHeader, Skeleton } from '@pomofy/ui'
-import { Icon } from '@pomofy/ui/icons'
 
 export default function Main({ tokenId }: { tokenId: string }) {
     useLocalSessionId(tokenId)
@@ -25,54 +24,15 @@ export default function Main({ tokenId }: { tokenId: string }) {
 
     return (
         <>
-            <div className="col-span-3 md:col-span-2 p-5 mt-[75px] w-full md:[960px]">
-                <div className="flex flex-col items-center justify-between gap-5 mb-5 md:flex-row">
-                    <Card className="w-full">
-                        <CardHeader className="flex flex-row justify-between items-center">
-                            <p className="text-sm font-bold">Total Todo</p>
-                            <Icon name="ListTodo" size={23} />
-                        </CardHeader>
-                        <CardContent>
-                            <h3 className="text-3xl font-bold">{result?.data.todoItems ?? 0}</h3>
-                        </CardContent>
-                    </Card>
-                    <Card className="w-full">
-                        <CardHeader className="flex flex-row justify-between items-center">
-                            <p className="text-sm font-bold">Total Inprogress</p>
-                            <Icon name="Pickaxe" size={23} />
-                        </CardHeader>
-                        <CardContent>
-                            <h3 className="text-3xl font-bold">
-                                {result?.data.inProgressItems ?? 0}
-                            </h3>
-                        </CardContent>
-                    </Card>
-                    <Card className="w-full">
-                        <CardHeader className="flex flex-row justify-between items-center">
-                            <p className="text-sm font-bold">Total Completed</p>
-                            <Icon name="ListChecks" size={23} />
-                        </CardHeader>
-                        <CardContent>
-                            <h3 className="text-3xl font-bold">
-                                {result?.data.completedItems ?? 0}
-                            </h3>
-                        </CardContent>
-                    </Card>
-                </div>
+            <div className="col-span-3 p-5 mt-[75px] w-full">
                 <div className="flex flex-col xl:flex-row gap-5 md:justify-between mb-5">
-                    <Card className="w-full xl:w-[853px]">
-                        <CardHeader>
-                            <p>Overview</p>
-                        </CardHeader>
-                        <CardContent>
-                            <LineChart
-                                todo={result?.data.todoItems}
-                                inProgress={result?.data?.inProgressItems}
-                                totalCompleted={result?.data.completedItems}
-                            />
-                        </CardContent>
-                    </Card>
-                    <Card className="w-full xl:w-[853px]">
+                    <TaskOverview
+                        todoItems={result?.data.todoItems}
+                        completedItems={result?.data.completedItems}
+                        inprogessItems={result?.data.inProgressItems}
+                    />
+
+                    <Card className="w-full border-0 xl:w-[853px]">
                         <CardHeader>
                             <p>{format(new Date(), 'PPPP')}</p>
                         </CardHeader>
@@ -86,28 +46,58 @@ export default function Main({ tokenId }: { tokenId: string }) {
                     </Card>
                 </div>
 
-                <div>
+                <div className="mb-5">
                     {isLoading ? (
-                        <div className="h-[150px]">
-                            <div className="p-[24px]">
-                                <div className="flex items-center justify-between mb-2">
-                                    <Skeleton className="h-[24px] w-[200px]" />
-                                    <Skeleton className="h-[34px] w-[100px] " />
-                                </div>
-                                <Skeleton className="h-[24px] w-1/2" />
-                            </div>
-                            <div className="flex flex-col gap-5 md:flex-row items-center justify-between px-[24px] pb-[24px]">
-                                <Skeleton className="h-[24px] w-[90px]" />
-                                <Skeleton className="h-[40px] w-[190px]" />
-                            </div>
+                        <div>
+                            <Card>
+                                <CardHeader>
+                                    <Skeleton className="w-[100px] h-[20px]" />
+                                </CardHeader>
+                                <CardContent className="w-full h-[400px]">
+                                    <Skeleton className="w-full h-[300px]" />
+                                </CardContent>
+                            </Card>
                         </div>
                     ) : (
-                        <TaskList data={result?.data?.items} />
+                        <Card className="border-0">
+                            <CardHeader>Task Over Time</CardHeader>
+                            <CardContent className="w-full h-[400px]">
+                                {result && result.data.items.length !== 0 ? (
+                                    <Chart data={result?.data.items} />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center">
+                                        <span className="opacity-50">No data available</span>
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
                     )}
                 </div>
-            </div>
-            <div className="hidden fixed right-0 w-1/3 h-screen md:flex items-center justify-center border-l border-slate-300 z-2">
-                <CreateTaskForm />
+
+                <div className="lg:hidden">
+                    <Card>
+                        <CardHeader>Task List</CardHeader>
+                        <CardContent>
+                            {isLoading ? (
+                                <div className="h-[150px]">
+                                    <div className="p-[24px]">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <Skeleton className="h-[24px] w-[200px]" />
+                                            <Skeleton className="h-[34px] w-[100px] " />
+                                        </div>
+                                        <Skeleton className="h-[24px] w-1/2" />
+                                    </div>
+                                    <div className="flex flex-col gap-5 md:flex-row items-center justify-between px-[24px] pb-[24px]">
+                                        <Skeleton className="h-[24px] w-[90px]" />
+                                        <Skeleton className="h-[40px] w-[190px]" />
+                                    </div>
+                                </div>
+                            ) : (
+                                <TaskList data={result?.data?.items} />
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         </>
     )

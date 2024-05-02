@@ -198,7 +198,7 @@ export default function CreateTaskForm({ className = 'w-2/3' }: { className?: st
                 <Button
                     type="submit"
                     variant={'default'}
-                    className="w-full"
+                    className="w-full text-white"
                     disabled={form.formState.isSubmitting}
                 >
                     <span className="relative">

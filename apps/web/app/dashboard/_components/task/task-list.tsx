@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { format } from 'date-fns'
 
-import { Services } from '../_actions/task-action'
+import { Services } from '../../_actions/task-action'
 import { Icon } from '@pomofy/ui/icons'
 import {
     Button,
@@ -62,7 +62,7 @@ export default function TaskList({ data }: { data: TData[] }) {
                                     type="button"
                                     variant={'default'}
                                     onClick={() => mutation.mutate(item.id)}
-                                    className="w-[190px]"
+                                    className="w-[190px] text-white"
                                 >
                                     <span className="relative">
                                         {mutation.isPending ? (

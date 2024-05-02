@@ -41,8 +41,8 @@ export default function Page() {
     }
 
     return (
-        <Card className="md:w-96 space-y-2">
-            <CardHeader>Pomofy Sign Up</CardHeader>
+        <Card className="space-y-2 md:w-full md:bg-transparent md:border-0">
+            <CardHeader className="font-bold leading-relaxed">Pomofy Sign Up</CardHeader>
             <CardContent>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4">
@@ -51,7 +51,9 @@ export default function Page() {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-300">Name</FormLabel>
+                                    <FormLabel className="text-slate-900 dark:text-slate-300">
+                                        Name
+                                    </FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
@@ -82,7 +84,9 @@ export default function Page() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-300">Email</FormLabel>
+                                    <FormLabel className="text-slate-900 dark:text-slate-300">
+                                        Email
+                                    </FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
@@ -113,7 +117,9 @@ export default function Page() {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-300">Password</FormLabel>
+                                    <FormLabel className="text-slate-900 dark:text-slate-300">
+                                        Password
+                                    </FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
@@ -155,7 +161,7 @@ export default function Page() {
                         />
                         <Button
                             variant={'default'}
-                            className="w-full"
+                            className="w-full text-white"
                             disabled={form.formState.isSubmitting}
                         >
                             Sign Up

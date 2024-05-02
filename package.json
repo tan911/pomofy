@@ -8,6 +8,8 @@
         "dev:server": "dotenv -- turbo run dev --filter=server",
         "dev:web": "dotenv -- turbo run dev --filter=web",
         "db:generate": "dotenv -- turbo run db:generate --filter=prisma",
+        "db:push": "dotenv -- turbo run db:push --filter=prisma",
+        "db:seed": "dotenv -- turbo run db:seed --filter=prisma",
         "lint": "turbo lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "test": "turbo run test",
