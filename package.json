@@ -8,6 +8,7 @@
         "dev:server": "dotenv -- turbo run dev --filter=server",
         "dev:web": "dotenv -- turbo run dev --filter=web",
         "db:generate": "dotenv -- turbo run db:generate --filter=prisma",
+        "db:migrate": "dotenv -- turbo run db:migrate --filter=prisma",
         "db:push": "dotenv -- turbo run db:push --filter=prisma",
         "db:seed": "dotenv -- turbo run db:seed --filter=prisma",
         "lint": "turbo lint",

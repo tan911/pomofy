@@ -14,17 +14,22 @@ Welcome to Pomofy, an app designed to enhance your task management experience wi
 Go to this [guide](https://github.com/tan911/pomofy/wiki) and follow the step (1-2).
 After cloning the repo, you can follow this commands:
 
-```bash
-// change directory
+```sh
 your@pc:~$ cd pomofy
-
-// install necessary dependencies
 your@pc:~$ pnpm install
+```
 
-// NOTE: before running the app
-// make sure you already set up your postgreSQL and pgAdmin database.
-// If not, you can watch this tutorial on youtube on how to install postgreSQL and pgAdmin to your machine.
-// - https://www.youtube.com/watch?v=uN0AfifH1TA
+NOTE: before running these commands
+make sure you already set up your postgreSQL and pgAdmin database.
+If not, you can watch this [tutorial](https://www.youtube.com/watch?v=uN0AfifH1TA) on youtube on how to install
+postgreSQL and pgAdmin to your machine.
+
+```sh
+your@pc:~$ pnpm run db:migrate
+your@pc:~$ pnpm run db:seed
+```
+
+```sh
 your@pc:~$ pnpm run dev:all
 ```
 
