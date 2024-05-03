@@ -11,7 +11,7 @@ Welcome to Pomofy, an app designed to enhance your task management experience wi
 
 ## Development Setup
 
-Go to this [guide](https://github.com/tan911/pomofy/wiki) and follow the step (1-2).
+Go to this [Contributing Guide](https://github.com/tan911/pomofy/wiki) and follow the step (1-2).
 After cloning the repo, you can follow this commands:
 
 ```sh
