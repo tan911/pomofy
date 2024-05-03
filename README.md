@@ -30,9 +30,6 @@ postgreSQL and pgAdmin to your local machine.
 ```sh
 your@pc:~$ pnpm run db:migrate
 your@pc:~$ pnpm run db:seed
-```
-
-```sh
 your@pc:~$ pnpm run dev:all
 ```
 
