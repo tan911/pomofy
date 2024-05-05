@@ -9,6 +9,9 @@ import {
     ResponsiveContainer,
     ComposedChart,
 } from 'recharts'
+import { format } from 'date-fns'
+
+import CustomToolTip from './tooltip'
 
 type TData = {
     id: string
@@ -44,10 +47,16 @@ export default function Chart({ data }: { data: TData }) {
         return acc
     }, {})
 
-    const tasksOverTimeArray = Object.entries(tasksOverTime).map(([date, count]) => ({
-        date,
-        count,
-    }))
+    const tasksOverTimeArray = Object.entries(tasksOverTime).map(([date, count]) => {
+        return {
+            date,
+            count,
+        }
+    })
+
+    const formatedDate = (date: string) => {
+        return format(new Date(date), 'ccc')
+    }
 
     return (
         <ResponsiveContainer width="100%" height="100%">
@@ -58,10 +67,13 @@ export default function Chart({ data }: { data: TData }) {
                         <stop offset="97%" stopColor="#1f3f52" stopOpacity={0.1} />
                     </linearGradient>
                 </defs>
-                <CartesianGrid vertical={false} strokeDasharray="2 2" />
-                <XAxis dataKey="date" />
+                <CartesianGrid vertical={false} horizontal={false} strokeDasharray="2 2" />
+                <XAxis dataKey="date" tickFormatter={formatedDate} />
                 <YAxis />
-                <Tooltip />
+                <Tooltip
+                    cursor={{ stroke: '#19adfe', strokeDasharray: 5 }}
+                    content={<CustomToolTip active={false} payload={[]} label={''} />}
+                />
                 <Area
                     type="monotone"
                     dataKey="count"
