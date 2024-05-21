@@ -13,7 +13,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
             <div className="hidden h-full md:border-r md:border-slate-700 md:flex md:w-[400px] lg:w-[700px]">
                 <div className="m-auto">
                     <h1 className="font-bold sm:text-4xl lg:text-6xl leading-10">Pomofy Account</h1>
-                    <p className="text-right mt-4 font-semibold leading-relaxed opacity-90">
+                    <p className="ml-auto text-right mt-4 font-semibold leading-relaxed opacity-90 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
                         We're so excited to have you join us!
                     </p>
                 </div>

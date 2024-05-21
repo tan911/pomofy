@@ -29,7 +29,7 @@ export default function TaskOverview({
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-6">
                             <div className="bg-[#5a4932] p-3 w-[47px] h-[47px] rounded-full">
-                                <Icon name="Pickaxe" size={23} className="text-[#fdb95a]" />
+                                <Icon name="Clock" size={23} className="text-[#fdb95a]" />
                             </div>
                             <p className="text-md leading-tight">Inprogress</p>
                         </div>
@@ -42,7 +42,7 @@ export default function TaskOverview({
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-6">
                             <div className="bg-[#465656] p-3 w-[47px] h-[47px] rounded-full">
-                                <Icon name="ListChecks" size={23} className="text-[#a7ddd7]" />
+                                <Icon name="CircleCheck" size={23} className="text-[#a7ddd7]" />
                             </div>
                             <p className="text-md leading-tight">Completed</p>
                         </div>

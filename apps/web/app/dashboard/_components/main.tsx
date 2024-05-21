@@ -63,7 +63,7 @@ export default function Main({ tokenId }: { tokenId: string }) {
                             <CardHeader>Task Over Time</CardHeader>
                             <CardContent className="w-full h-[400px]">
                                 {result && result.data.items.length !== 0 ? (
-                                    <Chart data={result?.data.items} />
+                                    <Chart data={result?.data.allItems} />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center">
                                         <span className="opacity-50">No data available</span>

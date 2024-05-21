@@ -1,29 +1,42 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'next/navigation'
 
 import { Services } from '../../_actions/task-action'
-import { Card, CardContent, CardHeader, Skeleton } from '@pomofy/ui'
+import { Card, CardContent, CardFooter, CardHeader, Skeleton } from '@pomofy/ui'
+import { useEffect } from 'react'
 import Table from './activity-table'
 import useLocalSessionId from '@/hooks/useLocalSessionId'
+import Pagination from './activity-pagination'
 
 export default function Activities({ tokenId }: { tokenId: string }) {
     useLocalSessionId(tokenId)
+    const searchParams = useSearchParams()
 
-    const { data: result, isLoading } = useQuery({
-        queryFn: () => Services.getData(),
+    const currentPage = Number(searchParams.get('page')) || 1
+    const {
+        data: result,
+        isLoading,
+        refetch,
+    } = useQuery({
+        queryFn: () => Services.getData(currentPage),
         queryKey: ['taskList'],
     })
+
+    useEffect(() => {
+        refetch()
+    }, [currentPage])
 
     return (
         <Card className="w-full border-0 h-[600px]">
             <CardHeader>
                 <h1>Activity List</h1>
                 <p>
-                    100 <span>total</span>
+                    {result?.data.totalItems} <span>total</span>
                 </p>
             </CardHeader>
-            <CardContent>
+            <CardContent className="h-[430px]">
                 {isLoading ? (
                     <Skeleton className="w-full h-[476px]" />
                 ) : result?.data.items.length !== 0 ? (
@@ -34,6 +47,9 @@ export default function Activities({ tokenId }: { tokenId: string }) {
                     </div>
                 )}
             </CardContent>
+            <CardFooter className="flex items-center justify-center mt-auto">
+                <Pagination totalPages={Math.floor(result?.data.totalItems / 6 ?? 0)} />
+            </CardFooter>
         </Card>
     )
 }

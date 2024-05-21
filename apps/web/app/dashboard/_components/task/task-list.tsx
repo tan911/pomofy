@@ -43,9 +43,9 @@ export default function TaskList({ data }: { data: TData[] }) {
                     <li key={item.id}>
                         <Card className="mb-5">
                             <CardHeader>
-                                <CardTitle className="flex items-center justify-between mb-2">
+                                <CardTitle className="flex items-center flex-col justify-between mb-2">
                                     <span>{item.title}</span>
-                                    <Badge className="p-2 text-xs" variant="outline">
+                                    <Badge className="p-2 mt-2 text-xs" variant="outline">
                                         {format(new Date(), 'PPP')}
                                     </Badge>
                                 </CardTitle>

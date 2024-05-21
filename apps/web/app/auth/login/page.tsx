@@ -152,7 +152,7 @@ export default function Page() {
                 <Link
                     href="/auth/signup"
                     className={cn(
-                        'hover:text-blue-700',
+                        'bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80',
                         form.formState.isSubmitting ? 'pointer-events-none' : ''
                     )}
                 >

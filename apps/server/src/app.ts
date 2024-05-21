@@ -7,7 +7,7 @@ import cors from 'cors'
 import { csrfProtection, validateAuthSession } from '@middlewares/validate-auth'
 import { errorHandler } from '@middlewares/app-error'
 import { logger } from '@lib/logger'
-import { taskRouter } from '@routes/index'
+import { userRouter } from '@routes/index'
 import env from './env'
 
 const app = express()
@@ -27,7 +27,7 @@ app.use(
 
 app.use('/api/v1', csrfProtection, validateAuthSession)
 
-app.use('/api/v1/task', taskRouter)
+app.use('/api/v1/user', userRouter)
 
 app.use('*', (req, res, next) => {
     next({ name: 'PAGE NOT FOUND', statusCode: 404, url: req.originalUrl })

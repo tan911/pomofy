@@ -9,8 +9,8 @@ route.get(
     '/',
     services.create({
         input: undefined,
-        output: async ({ ctx }) => {
-            return await ctx.userService.getTask(ctx.user?.id ?? '')
+        output: async ({ ctx, req }) => {
+            return await ctx.userService.getTask(req, ctx.user?.id ?? '')
         },
     })
 )

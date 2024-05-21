@@ -1,6 +1,7 @@
 import { PrismaClient, Task } from '@pomofy/prisma'
 import { z } from 'zod'
 import { CreateTaskSchema } from './user.schema'
+import type { Request } from 'express'
 
 interface ITask {
     items: Task[]
@@ -12,7 +13,7 @@ interface ITask {
 
 // TODO
 interface IUserService {
-    getTask: (id: string) => Promise<ITask>
+    getTask: (req: Request, id: string) => Promise<ITask>
 }
 
 export class UserService implements IUserService {
@@ -42,8 +43,21 @@ export class UserService implements IUserService {
         })
     }
 
-    async getTask(id: string) {
-        const [data, inprogress, todo, completed, total] = await this.prisma.$transaction([
+    async getTask(req: Request, id: string) {
+        const [data, allData, inprogress, todo, completed, total] = await this.prisma.$transaction([
+            this.prisma.task.findMany({
+                skip: (Number(req.query.page) - 1) * 6,
+                take: 6,
+                where: {
+                    taskId: id,
+                    status: {
+                        in: ['Completed', 'Inprogress'],
+                    },
+                },
+                orderBy: {
+                    date: 'desc',
+                },
+            }),
             this.prisma.task.findMany({
                 where: {
                     taskId: id,
@@ -90,6 +104,7 @@ export class UserService implements IUserService {
         ])
         return {
             items: data,
+            allItems: allData,
             inProgressItems: inprogress,
             todoItems: todo,
             completedItems: completed,

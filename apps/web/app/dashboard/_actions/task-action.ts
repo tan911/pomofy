@@ -16,19 +16,19 @@ export class Services {
 
     public static async createData(data: z.infer<typeof createPomoSchema>) {
         const action = await Services.operation
-        const response = await action.post('/api/v1/task', data)
+        const response = await action.post('/api/v1/user', data)
         return response
     }
 
-    public static async getData() {
+    public static async getData(page?: number) {
         const action = await Services.operation
-        const response = await action.get('/api/v1/task')
+        const response = await action.get(`/api/v1/user?page=${page ? page : 1}`)
         return response
     }
 
     public static async updateDataById(id: string) {
         const action = await Services.operation
-        const response = await action.patch('/api/v1/task', { id })
+        const response = await action.patch('/api/v1/user', { id })
         return response
     }
 }
